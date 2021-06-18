@@ -12,9 +12,32 @@ url = 'https://app.griffith.edu.au/course-profile-search/'
 html_RAW = requests.get(url).text
 site = soup(html_RAW, 'html.parser')
 #print(site.prettify())
-print(site.find(string='Trimester 2 2020').find_parent('option')['value'])
 #8 Mar Tri1S, June 7 Tri2E, 12 July Tri2S, Nov 1 Tri1E
 smt_tri = [datetime(2021,3,8),datetime(2021,6,7),datetime(2021,7,12),datetime(2021,11,1)]
+
+class Course():
+    def __init__(self, pID):
+        self.pID = pID
+        self.url = 'https://courseprofile.secure.griffith.edu.au/student_section_loader.php'
+    
+    def profile_request(self,section):
+        params = {'section': section, 'profileId': self.pID}
+        html_RAW = requests.get(url=self.url, params=params).text
+        return soup(html_RAW, 'html.parser')
+
+    def add_assignments(self):
+        pass
+
+class Assignment():
+    def __init__(self, title, weight, marked):
+        self.title = title
+        self.type = 'base'
+        self.weight = weight
+
+    def parseDate(self, date):
+        
+        
+
 
 def main(courseCode):
     pass
@@ -51,12 +74,9 @@ def courseRequest(url, semcode):
 def get_profileID(url):
     return ''.join(url[-6:])
 
-class Course(pID):
-    def __init__(self, pID):
-        pass
-
-
 def scrape_course(pID):
     pass
 
 profileID = courseRequest(url,semesterSelect(site))
+test = Course(profileID)
+print(test.profile_request('5'))
