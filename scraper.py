@@ -35,7 +35,8 @@ class Assignment():
         self.weight = weight
 
     def parseDate(self, date):
-        
+        return 
+
         
 
 
