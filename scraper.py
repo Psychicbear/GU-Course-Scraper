@@ -15,10 +15,15 @@ site = soup(html_RAW, 'html.parser')
 #8 Mar Tri1S, June 7 Tri2E, 12 July Tri2S, Nov 1 Tri1E
 smt_tri = [datetime(2021,3,8),datetime(2021,6,7),datetime(2021,7,12),datetime(2021,11,1)]
 
+#Course class, takes the profileID collected from course profile web request
 class Course():
-    def __init__(self, pID):
+    def __init__(self, pID, code):
         self.pID = pID
         self.url = 'https://courseprofile.secure.griffith.edu.au/student_section_loader.php'
+        self.code = code
+        self.staff = []
+        self.assignments = []
+        self.set_name()
     
     def profile_request(self,section):
         params = {'section': section, 'profileId': self.pID}
@@ -28,18 +33,58 @@ class Course():
     def add_assignments(self):
         pass
 
-class Assignment():
-    def __init__(self, title, weight, marked):
-        self.title = title
-        self.type = 'base'
-        self.weight = weight
-
-    def parseDate(self, date):
-        return 
-
+    def set_name(self):
+        page = self.profile_request('1')
+        for i in page.find_all('h1'):
+            if self.code in i.string:
+                 title = ''.join(i.string[:i.string.index(self.code)])
+                 self.name = title
         
 
+    def get_contact(self):
+        page = self.profile_request('1')
+        staff = page.find(id='course-staff').find_all_next('table')
+        for i in staff:
+            member = {}
+            print(i.find_parent('Phone'))
+        print(staff)
 
+    def present_info(self):
+        print(f'Course: {self.name}')
+
+
+#Basic Project assignment, takes assignment title, it's weight as float decimal, 'marked out of' as int in max_mark
+class Base():
+    def __init__(self, title, weight, marked):
+        self.title = title
+        self.max_mark = marked
+        self.est_mark = 0
+        self.act_mark = 0
+        self.weight = weight
+        self.submitted = False
+        self.marked = False
+        
+
+    def parseDate(self, date):
+        return datetime.strptime(date, '%d,%b,%y')
+
+    def estimate_mark(self):
+        while True:
+            try:
+                mark = int(input('Enter your estimated mark: '))
+                if mark < 0 or mark > self.max_mark:
+                    raise Exception('Invalid mark range')
+            except: 
+                print(f'Invalid mark, try again.\nTip: {self.max_mark} is your max mark, make sure your mark is within this!')
+                continue
+            else: break
+        self.est_mark = mark
+
+    def prcnt_mark(self):
+        if self.act_mark > 0:
+            return str(self.act_mark / self.max_mark) + '%'
+        else: return str(self.est_mark / self.max_mark) + '%' 
+        
 def main(courseCode):
     pass
 
@@ -69,8 +114,7 @@ def courseRequest(url, semcode):
     campus = r.find(string=campus).find_parents('tr')[0]
     profileID = campus.find('a')
     profileID = get_profileID(profileID['href'])
-    print(profileID)
-    return profileID
+    return Course(profileID, params['course_code'])
 
 def get_profileID(url):
     return ''.join(url[-6:])
@@ -78,6 +122,9 @@ def get_profileID(url):
 def scrape_course(pID):
     pass
 
-profileID = courseRequest(url,semesterSelect(site))
-test = Course(profileID)
-print(test.profile_request('5'))
+#profileID = courseRequest(url,semesterSelect(site))
+#testfull = courseRequest(url, semesterSelect(site))
+test = Course('115818', '1805ICT')
+test.get_contact()
+print(test.name)
+#print(test.profile_request('1'))
