@@ -68,19 +68,16 @@ class Course():
 
 #Basic Project assignment, takes assignment title, it's weight as float decimal, 'marked out of' as int in max_mark
 class Base():
-    def __init__(self, title, weight, marked):
-        self.title = title
-        self.max_mark = marked
-        self.est_mark = 0
-        self.act_mark = 0
-        self.weight = weight
-        self.submitted = False
-        self.marked = False
+    def __init__(self, data):
+        self.title = data['title']
+        self.max_mark = data['max_mark']
+        self.est_mark = data['est_mark']
+        self.act_mark = data['act_mark']
+        self.weight = data['weight']
+        self.submitted = data['submitted']
+        self.marked = data['marked']
+        self.duedate = date(data['due']['Y'],data['due']['M'],data['due']['D'])
         
-
-    def parseDate(self, date):
-        return datetime.strptime(date, '%d,%b,%y')
-
     def estimate_mark(self):
         while True:
             try:

@@ -26,7 +26,7 @@
                     "weight": 0.25,
                     "submitted": false,
                     "marked": false,
-                    "due": {"D": 23,"M": 4}
+                    "due": {"D": 23,"M": 4, "Y": 2021}
                 },
                 "A2": {
                     "title": "Workshop Task",
@@ -54,14 +54,14 @@
                             "est_mark": 12,
                             "act_mark": 0,
                             "weight": 0.125,
-                            "due": {"D": 23,"M": 4}
+                            "due": {"D": 23,"M": 4, "Y": 2021}
                         },
                         "2":{
                             "max_mark": 15,
                             "est_mark": 12,
                             "act_mark": 0,
                             "weight": 0.125,
-                            "due": {"D": 23,"M": 4}
+                            "due": {"D": 23,"M": 4, "Y": 2021}
                         }
                     },
                     "max_mark": 30,
@@ -83,7 +83,8 @@
                     "date": {
                         "set": true,
                         "D": 25,
-                        "M": 9
+                        "M": 9,
+                        "Y": 2021
                     }
 
                 }
