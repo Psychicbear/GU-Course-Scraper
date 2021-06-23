@@ -15,24 +15,39 @@ site = soup(html_RAW, 'html.parser')
 #8 Mar Tri1S, June 7 Tri2E, 12 July Tri2S, Nov 1 Tri1E
 smt_tri = [datetime(2021,3,8),datetime(2021,6,7),datetime(2021,7,12),datetime(2021,11,1)]
 
-#Course class, takes the profileID collected from course profile web request
+#Course class, takes a dict which MUST include pID: str, saved: boolean, course_code: str
 class Course():
-    def __init__(self, pID, code):
-        self.pID = pID
+    def __init__(self, data):
+        self.pID = data['pID']
+        self.code = data['course_code']
         self.url = 'https://courseprofile.secure.griffith.edu.au/student_section_loader.php'
-        self.code = code
-        self.staff = []
-        self.assignments = []
-        self.set_name()
+        self.loadCourse(data)
     
+    #Requests specified section of course profile
     def profile_request(self,section):
         params = {'section': section, 'profileId': self.pID}
         html_RAW = requests.get(url=self.url, params=params).text
         return soup(html_RAW, 'html.parser')
 
+    def loadCourse(self, dd):#Takes the data dict and loads relevent data if possible
+        if dd['saved'] is True:
+            self.name = dd['name']
+            self.staff= dd['staff']
+            self.assessments = dd['assessments']
+            print('Course loaded')
+            self.present_info()
+        else:
+            self.set_name()
+            self.get_contact()
+
+
+    
+
+    #WIP Parses section 5, creates an assignment class, currently only Basic(), appends complete course to Course.assignments list 
     def add_assignments(self):
         pass
-
+    
+    #Parses section 1 of profile, slices just name out of the h1 containing course info overview and passes result to Course.name
     def set_name(self):
         page = self.profile_request('1')
         for i in page.find_all('h1'):
@@ -40,7 +55,7 @@ class Course():
                  title = ''.join(i.string[:i.string.index(self.code)])
                  self.name = title
         
-
+    #Parses section 1 of profile, checks every table after "Course Staff" and appends contents to Course.staff
     def get_contact(self):
         page = self.profile_request('1')
         staff = page.find(id='course-staff').find_all_next('table')
@@ -49,6 +64,7 @@ class Course():
             print(i.find_parent('Phone'))
         print(staff)
 
+    #Used to present course overview to user
     def present_info(self):
         print(f'Course: {self.name}')
 
@@ -85,9 +101,6 @@ class Base():
             return str(self.act_mark / self.max_mark) + '%'
         else: return str(self.est_mark / self.max_mark) + '%' 
         
-def main(courseCode):
-    pass
-
 def semesterSelect(site):
     tri_time = site.find(string='Trimester 2 2020').find_parent('option')['value']
     return tri_time
@@ -99,6 +112,7 @@ def courseRequest(url, semcode):
     #print(r.prettify())
     campus_prompt = 'Which campus is your course?\n'
     j = 0
+    #Adds campus names along with allocated numbers to prompt
     for i in r.find_all('td'):
         if 'Campus' in i.string and i.string not in campus_list:
             campus_list.append(i.string)
@@ -114,7 +128,7 @@ def courseRequest(url, semcode):
     campus = r.find(string=campus).find_parents('tr')[0]
     profileID = campus.find('a')
     profileID = get_profileID(profileID['href'])
-    return Course(profileID, params['course_code'])
+    return Course({'pID': profileID, 'saved': False, 'course_code': params['course_code']})
 
 def get_profileID(url):
     return ''.join(url[-6:])
@@ -124,7 +138,7 @@ def scrape_course(pID):
 
 #profileID = courseRequest(url,semesterSelect(site))
 #testfull = courseRequest(url, semesterSelect(site))
-test = Course('115818', '1805ICT')
+test = Course({'pID': '115818', 'saved': False, 'course_code':'1805ICT'})
 test.get_contact()
 print(test.name)
 #print(test.profile_request('1'))

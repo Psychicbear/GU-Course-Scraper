@@ -1,0 +1,30 @@
+{
+    "settings":{
+        "user": "Riley"
+    },
+
+    "courses":{
+        "1805ICT": {
+            "pID": "323456",
+            "saved": true,
+            "course_code": "1805ICT",
+            "name": "Human Computer Interaction",
+            "description": "UI Design etc",
+            "staff": {
+                "Leigh Ellen Potter": {
+                    "phone": "07 3243 2345",
+                    "email": "example@griffithuni.edu.au"
+                }
+            },
+            "assessments": {
+                "A1*": {
+                    "dueD": 23,
+                    "dueM": 4,
+                    "value": 30
+                }
+            }
+
+
+        }
+    }
+}

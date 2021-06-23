@@ -1,0 +1,12 @@
+import json
+from scraper import Course
+user = ''
+courses = []
+with open('sampleprofile.json') as file:
+    data = json.load(file)
+    user = data['settings']['user']
+    print(data['courses'])
+    for key in data['courses']:
+        courses.append(Course(data['courses'][key])) 
+print(f'Welcome {user}, your courses: ')
+print(courses[0].name)
