@@ -4,7 +4,6 @@
     #Convert loggable info to dictionary
     #Convert dictionary to JSON
     
-
 cmdlist = {'help': ': Why did you request this?',
         'profile': ': Loads profile with the input name',
         'add': '[course code]: adds the attached course to your course list',

@@ -1,3 +1,4 @@
+#Tests the input of JSON course
 import json
 from scraper import Course
 user = ''

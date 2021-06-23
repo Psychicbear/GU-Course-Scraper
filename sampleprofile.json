@@ -17,10 +17,75 @@
                 }
             },
             "assessments": {
-                "A1*": {
-                    "dueD": 23,
-                    "dueM": 4,
-                    "value": 30
+                "A1": {
+                    "title": "Gaming Task",
+                    "type": "project",
+                    "max_mark": 30,
+                    "est_mark": 25,
+                    "act_mark": 0,
+                    "weight": 0.25,
+                    "submitted": false,
+                    "marked": false,
+                    "due": {"D": 23,"M": 4}
+                },
+                "A2": {
+                    "title": "Workshop Task",
+                    "type": "workshop",
+                    "weeks": {"1":
+                        {
+                            "max_mark": 30,
+                            "est_mark": 25,
+                            "act_mark": 0
+                        }
+                    },
+                    "max_mark": 30,
+                    "est_mark": 25,
+                    "act_mark": 0,
+                    "weight": 0.25,
+                    "submitted": false,
+                    "marked": false
+                },
+                "A3": {
+                    "title": "Group Task",
+                    "type": "multipart",
+                    "parts": {
+                        "1":{
+                            "max_mark": 15,
+                            "est_mark": 12,
+                            "act_mark": 0,
+                            "weight": 0.125,
+                            "due": {"D": 23,"M": 4}
+                        },
+                        "2":{
+                            "max_mark": 15,
+                            "est_mark": 12,
+                            "act_mark": 0,
+                            "weight": 0.125,
+                            "due": {"D": 23,"M": 4}
+                        }
+                    },
+                    "max_mark": 30,
+                    "est_mark": 24,
+                    "act_mark": 0,
+                    "weight": 0.25,
+                    "submitted": false,
+                    "marked": false
+                },
+                "A4": {
+                    "title": "UI Exam",
+                    "type": "exam",
+                    "max_mark": 30,
+                    "est_mark": 25,
+                    "act_mark": 0,
+                    "weight": 0.25,
+                    "submitted": false,
+                    "marked": false,
+                    "date": {
+                        "set": true,
+                        "D": 25,
+                        "M": 9
+                    }
+
                 }
             }
 

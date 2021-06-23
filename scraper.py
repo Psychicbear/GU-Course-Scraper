@@ -11,11 +11,10 @@ from bs4 import BeautifulSoup as soup, SoupStrainer
 url = 'https://app.griffith.edu.au/course-profile-search/'
 html_RAW = requests.get(url).text
 site = soup(html_RAW, 'html.parser')
-#print(site.prettify())
-#8 Mar Tri1S, June 7 Tri2E, 12 July Tri2S, Nov 1 Tri1E
-smt_tri = [datetime(2021,3,8),datetime(2021,6,7),datetime(2021,7,12),datetime(2021,11,1)]
+#Predictive Trimester Suggestion
+smt_tri = {'Tri1Start': datetime(2021,3,8),'Tri2Plan': datetime(2021,6,7),'Tri2Start': datetime(2021,7,12), 'Tri1Plan': datetime(2021,11,1)}
 
-#Course class, takes a dict which MUST include pID: str, saved: boolean, course_code: str
+#Course class, takes a dict which MUST include {pID: str, saved: boolean, course_code: str}
 class Course():
     def __init__(self, data):
         self.pID = data['pID']
@@ -28,8 +27,9 @@ class Course():
         params = {'section': section, 'profileId': self.pID}
         html_RAW = requests.get(url=self.url, params=params).text
         return soup(html_RAW, 'html.parser')
-
-    def loadCourse(self, dd):#Takes the data dict and loads relevent data if possible
+    
+    #Takes the data dict and loads relevent data if possible
+    def loadCourse(self, dd):
         if dd['saved'] is True:
             self.name = dd['name']
             self.staff= dd['staff']
@@ -39,9 +39,6 @@ class Course():
         else:
             self.set_name()
             self.get_contact()
-
-
-    
 
     #WIP Parses section 5, creates an assignment class, currently only Basic(), appends complete course to Course.assignments list 
     def add_assignments(self):
@@ -138,7 +135,7 @@ def scrape_course(pID):
 
 #profileID = courseRequest(url,semesterSelect(site))
 #testfull = courseRequest(url, semesterSelect(site))
-test = Course({'pID': '115818', 'saved': False, 'course_code':'1805ICT'})
-test.get_contact()
+test = Course({'pID': '115818', 'saved': False, 'course_code':'1805ICT'})#Tests course scraper
+#test.get_contact()
 print(test.name)
 #print(test.profile_request('1'))
