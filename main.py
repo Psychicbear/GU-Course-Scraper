@@ -10,6 +10,33 @@ cmdlist = {'help': ': Why did you request this?',
         'view': '[course code]: Views current assessments attached to course',
         '': ''}
 
+class manualCourse():
+    def __init__(self,code,name,note):
+        self.code = code
+        self.name = name
+        self.note = note
+    
+    def add_assignment(self):
+        assignment = {}
+        while True:
+            try:
+                assignment_type = input('''What type of assignment would you like to add? (project/workshop/multipart)
+                if you don't know what the types are, enter "help"
+                type: ''')
+                if assignment_type in ('project','workshop','multipart'):
+                    assignment.update({'type': assignment_type})
+                    break
+                elif assignment_type is 'help':
+                    print('''project: an assignment with one due date
+                    workshop: multiple assessment tasks to be completed each week
+                    multipart: assignment with multiple parts that are to be submitted on different dates''')
+                    continue
+                else: raise Exception('IncorrectInput')
+            except: print('Incorrect input, try again (tip: type is case sensitive)')
+        if assignment_type is 'project':
+            name = input()
+
+        
 
 def main():
     try:
@@ -40,6 +67,12 @@ def loadProfile(cfg):
     loaduser = cfg.readline().strip().split(':')[1]
     return loaduser
 
+
+def add_course():
+    print('Add a course to list')
+    course_code = input('Enter Course Code: ')
+    name = input('What is the name of the course?: ')
+    note = input('Would you like to add a note/description of course? (leave empty if none)')
 
 
 def REPL():
