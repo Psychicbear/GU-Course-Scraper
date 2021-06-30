@@ -52,8 +52,7 @@ class NewCourse():
         course = {self.code: {'course_code': self.code, 'name': self.name, 'description': self.note, 'assessments':{}}}
         for i in self.assignments:
             course[self.code]['assessments'].update(i.export())
-        courseJSON.update(course)
-        saveJSON()
+        return course
 
 
 class NewProject():
