@@ -1,0 +1,15 @@
+{
+    "main": {
+
+    },
+    "assignments": {
+        "type_prompt": "What type of assignment would you like to add? (project/workshop/multipart)\nIf you do not know what the types are, enter 'help'\n\ntype: ",
+        "type_help": "project: an assignment with one due date.\nworkshop: multiple assessment tasks to be completed each week.\nmultipart: assignment with multiple parts that are to be submitted on different dates.",
+        "proj_due": "Enter the due date for this assignment\nFormat: YYYY-MM-DD\n Due date: ",
+        "proj_weight_prompt": "Enter the weight of this assignment\n(expecting number in range 0-100, or help)\nweight: ",
+        "proj_weight_help": "Weight is the value of the assignment relative to the rest of the course'\nIt is usually shown as a percentage in the course profile"
+    },
+    "scraper": {
+
+    }
+}

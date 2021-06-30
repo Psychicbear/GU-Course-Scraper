@@ -9,7 +9,7 @@ def matching(prompt, compare, usr_help=None, err_msg='Incorrect input, try again
             if x in compare:
                 return x
             elif usr_help and x == 'help':
-                print(usr_help)
+                print('\n'+ usr_help + '\n')
                 continue
             else: raise Exception
         except: print(err_msg)
@@ -23,7 +23,7 @@ def specific(prompt, regex, usr_help=None, err_msg='Incorrect input, try again!'
             if search(regex, x):
                 return x
             elif usr_help and x == 'help':
-                print(usr_help)
+                print('\n'+ usr_help + '\n')
                 continue
             else: raise Exception
         except: print(err_msg)
@@ -35,7 +35,7 @@ def number_int(prompt, usr_help=None, err_msg='Incorrect input, try again!', ret
         try:
             x = input(prompt)
             if usr_help and x == 'help':
-                print(usr_help)
+                print('\n'+ usr_help + '\n')
                 continue
             elif return_str and x.isdigit():
                 return x
@@ -49,7 +49,7 @@ def number_float(prompt, usr_help=None, err_msg='Incorrect input, try again!', r
         try:
             x = input(prompt)
             if usr_help and x == 'help':
-                print(usr_help)
+                print('\n'+ usr_help + '\n')
                 continue
             else: x = float(x)
             if return_str: return str(x)

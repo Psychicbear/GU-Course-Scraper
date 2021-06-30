@@ -1,0 +1,24 @@
+{
+    "1805ICT": {
+        "course_code": "1805ICT",
+        "name": "Human Computer Interaction",
+        "description": "GUI stuff and things",
+        "assessments": {
+            "A0": {
+                "title": "Group Work",
+                "type": "project",
+                "max_mark": 30,
+                "est_mark": 0,
+                "act_mark": 0,
+                "weight": 0.4,
+                "submitted": false,
+                "marked": false,
+                "due": {
+                    "D": 24,
+                    "M": 8,
+                    "Y": 2021
+                }
+            }
+        }
+    }
+}

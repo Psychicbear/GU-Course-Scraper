@@ -1,3 +1,5 @@
+import errorHandling as Usr_In
+import json
 #Current To Do:
     #Store data in JSON
     #Manage JSON IO
@@ -9,34 +11,6 @@ cmdlist = {'help': ': Why did you request this?',
         'add': '[course code]: adds the attached course to your course list',
         'view': '[course code]: Views current assessments attached to course',
         '': ''}
-
-class manualCourse():
-    def __init__(self,code,name,note):
-        self.code = code
-        self.name = name
-        self.note = note
-    
-    def add_assignment(self):
-        assignment = {}
-        while True:
-            try:
-                assignment_type = input('''What type of assignment would you like to add? (project/workshop/multipart)
-                if you don't know what the types are, enter "help"
-                type: ''')
-                if assignment_type in ('project','workshop','multipart'):
-                    assignment.update({'type': assignment_type})
-                    break
-                elif assignment_type is 'help':
-                    print('''project: an assignment with one due date
-                    workshop: multiple assessment tasks to be completed each week
-                    multipart: assignment with multiple parts that are to be submitted on different dates''')
-                    continue
-                else: raise Exception('IncorrectInput')
-            except: print('Incorrect input, try again (tip: type is case sensitive)')
-        if assignment_type is 'project':
-            name = input()
-
-        
 
 def main():
     try:
@@ -81,4 +55,4 @@ def REPL():
         usr_in = input('Enter Command: ')
 
 
-main()
+#main()
