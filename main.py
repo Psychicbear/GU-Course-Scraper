@@ -1,14 +1,11 @@
-import errorHandling as Usr_In
-import json
+import errorHandling as Usr_In, json
 from assignments import NewCourse, NewProject
-#Current To Do:
-    #Store data in JSON
-    #Manage JSON IO
-    #Convert loggable info to dictionary
-    #Convert dictionary to JSON
 dataJSON = {}
 loadedCourses = []
 def saveJSON():
+    for i in loadedCourses:
+        global dataJSON
+        dataJSON.update(i.export())
     with open('data.json',mode='w') as outfile:
         json.dump(dataJSON, outfile, indent=4)
         return
@@ -16,8 +13,12 @@ def saveJSON():
 def loadJSON():
     with open('data.json',mode='r') as infile:
         data = json.load(infile)
-        global dataJSON
+        global dataJSON, loadedCourses
         dataJSON.update(data)
+        loadedCourses = []
+        for key in loadedCourses:
+            course = loadedCourses[key]
+            
         return
 
 def main():
@@ -49,4 +50,6 @@ def REPL():
 
 
 #main()
-#classtest = NewCourse()
+loadedCourses.append(NewCourse())
+loadedCourses.append(NewCourse())
+saveJSON()

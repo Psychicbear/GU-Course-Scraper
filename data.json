@@ -1,0 +1,14 @@
+{
+    "1805ICT": {
+        "course_code": "1805ICT",
+        "name": "Human Computer Interaction",
+        "description": "",
+        "assessments": {}
+    },
+    "1701ICT": {
+        "course_code": "1701ICT",
+        "name": "Creative Coding",
+        "description": "Best course ever",
+        "assessments": {}
+    }
+}
