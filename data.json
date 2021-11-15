@@ -1,14 +1,27 @@
 {
+    "user": "Riley",
     "1805ICT": {
         "course_code": "1805ICT",
         "name": "Human Computer Interaction",
-        "description": "",
+        "description": "No note given",
         "assessments": {}
     },
     "1701ICT": {
         "course_code": "1701ICT",
         "name": "Creative Coding",
         "description": "Best course ever",
+        "assessments": {}
+    },
+    "2810ICT": {
+        "course_code": "2810ICT",
+        "name": "Software Technologies",
+        "description": "Python group work",
+        "assessments": {}
+    },
+    "3906ICT": {
+        "course_code": "3906ICT",
+        "name": "Digital Forensics",
+        "description": "Scary course with court assignment",
         "assessments": {}
     }
 }
